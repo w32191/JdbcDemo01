@@ -1,12 +1,13 @@
 package com.samwang.demo;
 
-import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Types;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Demo6CallableStatement {
+public class Demo9AddBatch {
 
   private Connection conn;
 
@@ -25,27 +26,37 @@ public class Demo6CallableStatement {
     }
   } //end of closeConnection()
 
-  public void callProcedure() throws SQLException {
-    CallableStatement callState = conn.prepareCall("{call productProc(?,?)}");
-    callState.setInt(1, 1003);
-    callState.registerOutParameter(2, Types.VARCHAR);
-    callState.execute();
+  public void couponGenerator() throws SQLException {
+    List<String> usernames = new ArrayList<>();
+    usernames.add("Tom");
+    usernames.add("Tina");
+    usernames.add("Gina");
+    usernames.add("Mike");
 
-    String productname = callState.getString(2);
-    System.out.println("productname: " + productname);
-    callState.close();
-  }//end of callProcedure()
+    String sql = "INSERT INTO coupon(username,couponCode) VALUES(?,?)";
+    PreparedStatement preState = conn.prepareStatement(sql);
+    for (String name : usernames) {
+      preState.setString(1, name);
+      preState.setString(2, "GoodCode666");
+      preState.addBatch();
+    }
+    int[] rows = preState.executeBatch();
+    System.out.println("sql count:" + rows.length);
 
+    preState.close();
+
+  }// end of couponGenerator()
 
   public static void main(String[] args) {
-    Demo6CallableStatement demo = new Demo6CallableStatement();
+    Demo9AddBatch demo = new Demo9AddBatch();
+
     try {
       demo.createConnection();
-      demo.callProcedure();
+      demo.couponGenerator();
 
     } catch (SQLException e) {
       e.printStackTrace();
-    }finally {
+    } finally {
       try {
         demo.closeConnection();
       } catch (SQLException e) {
@@ -53,5 +64,4 @@ public class Demo6CallableStatement {
       }
     }
   }
-
 }

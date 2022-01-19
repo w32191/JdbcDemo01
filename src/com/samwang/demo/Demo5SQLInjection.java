@@ -12,11 +12,11 @@ public class Demo5SQLInjection {
   private Connection conn;
 
   public void createConnection() throws SQLException {
-    String url = "jdbc:sqlserver://localhost:1433;database=JDBCDemoDB;user=sa;password=Passw0rd!";
+    String url = "jdbc:sqlserver://192.168.33.72:1433;database=JDBCDemoDB;user=sa;password=Passw0rd!";
     conn = DriverManager.getConnection(url);
     boolean status = !conn.isClosed();
     if (status) {
-      System.out.println("Open Connection!!");
+      System.out.println("Open Connector!!");
     }
   } //end of createConnection()
 
@@ -62,7 +62,7 @@ public class Demo5SQLInjection {
 //      boolean result = demo.checkLogin2("jack","password");
 
 //      boolean result = demo.checkLogin2("' or 1=1 --","password123123");
-      boolean result = demo.checkLogin2("jack","qq");
+      boolean result = demo.checkLogin2("jerry","password");
 
 
       if (result) {
@@ -76,7 +76,7 @@ public class Demo5SQLInjection {
     } finally {
       try {
         demo.closeConnection();
-        System.out.println("Close Connection!");
+        System.out.println("Close Connector!");
       } catch (SQLException e) {
         e.printStackTrace();
       }

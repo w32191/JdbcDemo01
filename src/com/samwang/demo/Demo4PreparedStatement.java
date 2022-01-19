@@ -15,7 +15,7 @@ public class Demo4PreparedStatement {
     conn = DriverManager.getConnection(url);
     boolean status = !conn.isClosed();
     if (status) {
-      System.out.println("Open Connection!!");
+      System.out.println("Open Connector!!");
     }
   } //end of createConnection()
 
@@ -99,7 +99,7 @@ public class Demo4PreparedStatement {
     } finally {
       try {
         demo.closeConnection();
-        System.out.println("Closed Connection !!");
+        System.out.println("Closed Connector !!");
       } catch (SQLException e) {
         e.printStackTrace();
       }

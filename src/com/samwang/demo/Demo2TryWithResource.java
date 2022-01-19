@@ -10,7 +10,7 @@ public class Demo2TryWithResource {
     String url = "jdbc:sqlserver://localhost:1433;databaseName=JDBCDemoDB;user=sa;password=Passw0rd!";
 
     try (Connection conn = DriverManager.getConnection(url)) {
-      System.out.println("Connection!!");
+      System.out.println("Connector!!");
 
     } catch (SQLException e) {
       System.out.println("Wrong!!");

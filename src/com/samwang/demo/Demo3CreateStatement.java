@@ -15,7 +15,7 @@ public class Demo3CreateStatement {
     conn = DriverManager.getConnection(url);
     boolean status = !conn.isClosed();
     if (status) {
-      System.out.println("Open Connection!!");
+      System.out.println("Open Connector!!");
     }
   } //end of createConnection()
 
@@ -65,6 +65,7 @@ public class Demo3CreateStatement {
   public void updateData() throws SQLException {
     String sql = "UPDATE product SET productprice = 70 WHERE productname = 'mask'";
     Statement state = conn.createStatement();
+
     int row = state.executeUpdate(sql);
     System.out.println("修改了" + row + "筆");
 
@@ -129,7 +130,7 @@ public class Demo3CreateStatement {
     } finally {
       try {
         demo.closeConnection();
-        System.out.println("Closed Connection !!");
+        System.out.println("Closed Connector !!");
       } catch (SQLException e) {
         System.out.println("Close Wrong !!");
         e.printStackTrace();

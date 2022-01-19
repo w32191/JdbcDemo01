@@ -2,4 +2,7 @@
 <component inherit-compiler-output="true" inheritJdk="true">
 	<exclude-output/>
 	<contentEntry url="file://$MODULE_DIR$"/>
+	<levels>
+		<level name="mssql-jdbc-9.4.1.jre11" value="project"/>
+	</levels>
 </component>

@@ -11,7 +11,7 @@ public class Demo1Connection {
 //      Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
       String url = "jdbc:sqlserver://localhost:1433;databaseName=JDBCDemoDB;user=sa;password=Passw0rd!";
       String url2 = "jdbc:sqlserver://localhost:1433;databaseName=JDBCDemoDB";
-//      Connection conn = DriverManager.getConnection(url);
+//      Connector conn = DriverManager.getConnection(url);
       Connection conn = DriverManager.getConnection(url2,"sa","Passw0rd!");
 
       boolean status = !conn.isClosed();
